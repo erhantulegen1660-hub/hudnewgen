@@ -1,0 +1,105 @@
+# ============================================================
+#  AegisHUD — настройки
+#  После изменений: /hud reload
+#  Цвета и текст — формат MiniMessage (<red>, <bold>, <gradient:#aaa:#bbb> ...)
+# ============================================================
+
+# IP сервера (подставляется в строки как <ip>)
+ip: "aegis.gamepvp.ru"
+
+# Часовой пояс для <date> и <time>
+timezone: "Europe/Moscow"
+
+# Заголовок HUD. <phase> нужен для анимации градиента — не удаляй его, если animate-title: true
+title: "<gradient:#c084fc:#60a5fa:<phase>><bold>AEGIS</bold></gradient>"
+animate-title: true
+
+# Префикс сообщений плагина
+prefix: "<gradient:#c084fc:#60a5fa><bold>AEGIS</bold></gradient> <dark_gray>» <gray>"
+
+# Какой HUD показывать:
+#   auto — по миру: если игрок в мире из br-worlds -> HUD королевской битвы, иначе хаб
+#   hub / br — принудительно для всех (можно менять на лету: /hud mode hub)
+mode: auto
+
+# Миры королевской битвы (ПОМЕНЯЙ на названия своих миров!)
+br-worlds:
+  - "br"
+
+# Автоматическая смена стадий, когда таймер дошёл до 0
+auto-advance: false
+
+# Учёт статистики
+tracking:
+  kills: true              # убийство игрока в мире из br-worlds -> +1 к убийствам
+  deaths-as-losses: false  # смерть в br-worlds -> +1 к поражениям (включи, если другой плагин этого не делает)
+
+# Стадии. Порядок важен (для /hud next и auto-advance).
+#  name     — как показывать в HUD (<stage>)
+#  duration — сколько секунд до следующей стадии (-1 = без таймера)
+#  barrier  — размер барьера в HUD (<barrier>); -1 = брать реальный размер границы мира
+stages:
+  start:
+    name: "Начало"
+    duration: 60
+    barrier: 1000
+  mining:
+    name: "Майнинг"
+    duration: 600
+    barrier: 1000
+  shrink:
+    name: "Сужение"
+    duration: 300
+    barrier: 500
+  predeath:
+    name: "Пред-деатчмач"
+    duration: 60
+    barrier: 100
+  death:
+    name: "Деатчмач"
+    duration: 300
+    barrier: 50
+
+# Ресурспак можно отправлять из плагина. Если url пустой — плагин ничего не отправляет,
+# и тогда укажи пак в server.properties (resource-pack=, resource-pack-sha1=).
+resource-pack:
+  url: ""
+  sha1: ""
+  force: false
+
+# ------------------------------------------------------------
+# Строки HUD (максимум 15). Сверху вниз. Пустая строка "" — отступ.
+# Переменные:
+#  <nick> <ping> <amethysts> <date> <time> <hours> <wins> <losses> <ip>
+#  <kills> (убийства матча) <totalkills> (всего) <alive> <stage> <timer> <barrier>
+# Иконки из ресурспака: <i_player> <i_ping> <i_amethyst> <i_calendar> <i_clock>
+#  <i_trophy> <i_skull> <i_heart> <i_sword> <i_stage> <i_timer> <i_barrier>
+# ------------------------------------------------------------
+
+# HUD ХАБА
+hub-lines:
+  - ""
+  - "<color:#c084fc><i_player></color> <white><bold><nick>"
+  - "<color:#7dd3fc><i_ping></color> <gray><ping> мс"
+  - "<color:#e879f9><i_amethyst></color> <light_purple><bold><amethysts>"
+  - ""
+  - "<color:#60a5fa><i_calendar></color> <gray><date>"
+  - "<color:#60a5fa><i_clock></color> <gray><hours>"
+  - "<color:#facc15><i_trophy></color> <gray>Побед: <yellow><bold><wins>"
+  - "<color:#f87171><i_skull></color> <gray>Поражений: <red><bold><losses>"
+  - ""
+  - "<color:#a78bfa><i_timer></color> <white><bold><time>"
+  - "<gradient:#c084fc:#60a5fa><bold><ip>"
+
+# HUD КОРОЛЕВСКОЙ БИТВЫ
+br-lines:
+  - ""
+  - "<color:#f87171><i_heart></color> <gray>Живых: <white><bold><alive>"
+  - "<color:#fb923c><i_sword></color> <gray>Убийств: <white><bold><kills>"
+  - ""
+  - "<color:#c084fc><i_stage></color> <light_purple><bold><stage>"
+  - "<color:#60a5fa><i_timer></color> <gray>До смены: <white><bold><timer>"
+  - "<color:#34d399><i_barrier></color> <gray>Барьер: <white><bold><barrier> бл."
+  - ""
+  - "<color:#a78bfa><i_clock></color> <white><bold><time>"
+  - "<gradient:#c084fc:#60a5fa><bold><ip>"
